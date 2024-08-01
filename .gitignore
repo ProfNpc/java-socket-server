@@ -1,7 +1,5 @@
 .metadata/**
-cliente/.settings/**
-cliente/bin/**
-servidor/.settings/**
-servidor/bin/**
-
+**/.settings/**
+**/bin/**
+**/target/**
 

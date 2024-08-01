@@ -1,27 +1,19 @@
-package lab.cliente;
+package lab.clientemultservidor;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 
-public class ClienteSimples {
+public class ClienteMultServidor {
 
 	public static void main(String[] args) {
 
 		try {
 			System.out.println("[Cliente] Inicio");
-			
-			Scanner teclado = new Scanner(System.in);
-			System.out.println("Digite o IP:");
-			String ip = teclado.nextLine();
-			
-			System.out.println("Digite a porta:");
-			int porta = Integer.parseInt(teclado.nextLine());
-			
-			//Cria um objeto socket que se conecta na porta escolhida na maquina de endereço informado
-			Socket clientSocket = new Socket(ip, porta);
+
+			//Cria um objeto socket que se conecta na porta 7777 na maquina de endereço localhost
+			Socket clientSocket = new Socket("localhost", 7777);
 
 			//Cria um fluxo de saída (output stream) que permitira
 			//enviar dados para a outra ponta do socket (servidor)
