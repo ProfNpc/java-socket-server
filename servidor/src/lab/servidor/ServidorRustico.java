@@ -8,20 +8,25 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class ServidorRustico {
 
 	public static void main(String[] args) {
 		try {
 			System.out.println("[ServidorRustico] Inicio");
-			//Cria um objeto ServerSocket para ficar "ouvindo" a porta 7777
+			
+			Scanner teclado = new Scanner(System.in);
+			System.out.println("Digite a porta:");
+			int porta = Integer.parseInt(teclado.nextLine());
+			teclado.close();
+			
+			//Cria um objeto ServerSocket para ficar "ouvindo" a porta escolhida
 			//aguardando que outro programa se conecte nessa porta
-			ServerSocket server = new ServerSocket(7777);
+			ServerSocket server = new ServerSocket(porta);
 
 			//Recupera o endereço IP da maquina que esta rodando esse programa
 			InetAddress enderecoIP = server.getInetAddress();
-			//Recupera a porta, que nós sabemos que é a 7777
-			int porta = server.getLocalPort();
 
 			//Recupera, salva e apresenta a maquina, IP e a porta onde esta a aplicacao
 			String serverIdentification = String.format("IP:=%s, Porta:%s\n", InetAddress.getLocalHost(), porta);
