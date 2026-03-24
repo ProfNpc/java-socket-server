@@ -3,3 +3,42 @@
 **/bin/**
 **/target/**
 
+# INICIO PARTE ANDROID
+# --- Build Artifacts ---
+build/
+bin/
+gen/
+out/
+*.apk
+*.ap_
+*.dex
+*.class
+
+# --- Android Studio / IntelliJ ---
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/caches
+*.iml
+captures/
+.externalNativeBuild/
+.navigation/
+
+# --- Local Configuration (Sensitive) ---
+local.properties
+*.jks
+*.keystore
+google-services.json
+
+# --- Gradle ---
+.gradle/
+/gradle/wrapper/gradle-wrapper.jar
+# Note: Keep gradle-wrapper.properties and gradlew scripts to ensure build reproducibility.
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
+# FIM PARTE ANDROID
