@@ -7,8 +7,7 @@ import java.util.concurrent.atomic.*;
 
 public class ChatServer {
 
-    private static final int PORT = 12345;
-    private static final int THREAD_POOL_SIZE = 50;
+    private static final int TAMANHO_THREAD_POOL = 50;
 
     // Lista thread-safe de todos os handlers ativos
     private static final CopyOnWriteArrayList<ClientHandler> clients =
@@ -16,17 +15,27 @@ public class ChatServer {
 
     private static final AtomicInteger clientCounter = new AtomicInteger(0);
 
-    public static void main(String[] args) {
+    private int porta;
+    
+    public ChatServer(int porta) {
+		this.porta = porta;
+	}
+
+	public ChatServer() {
+		this(Constantes.PORTA_PADRAO);
+	}
+
+	public static void main(String[] args) {
     	ChatServer chatServer = new ChatServer();
     	chatServer.execute();
     }
 
 	public void execute() {
-		ExecutorService threadPool = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
+		ExecutorService threadPool = Executors.newFixedThreadPool(TAMANHO_THREAD_POOL);
 
-        System.out.println("Servidor de chat iniciado na porta " + PORT);
+        System.out.println("Servidor de chat iniciado na porta " + this.porta);
 
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+        try (ServerSocket serverSocket = new ServerSocket(this.porta)) {
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 int clientId = clientCounter.incrementAndGet();

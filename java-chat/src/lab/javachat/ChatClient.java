@@ -6,19 +6,28 @@ import java.util.Scanner;
 
 public class ChatClient {
 
-    private static final String HOST = "localhost";
-    private static final int PORT = 12345;
+    private String host;
+    private int porta;
 
-    public static void main(String[] args) {
+	public ChatClient() {
+		this(Constantes.HOST_PADRAO, Constantes.PORTA_PADRAO);
+	}
+
+	public ChatClient(String host, int porta) {
+		this.host = host;
+		this.porta = porta;
+	}
+
+	public static void main(String[] args) {
     	ChatClient chatClient = new ChatClient();
     	chatClient.execute();
     }
 
 	public void execute() {
-		System.out.println("Conectando ao servidor " + HOST + ":" + PORT + "...");
+		System.out.println("Conectando ao servidor " + this.host + ":" + this.porta + "...");
 
         try (
-            Socket socket = new Socket(HOST, PORT);
+            Socket socket = new Socket(this.host, this.porta);
             BufferedReader serverIn = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
             PrintWriter serverOut = new PrintWriter(socket.getOutputStream(), true);
